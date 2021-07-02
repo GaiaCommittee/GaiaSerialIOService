@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+# Misc
+/.idea
+/*/bin
+/*/obj
+/Native/.idea
+/Native/cmake-*
