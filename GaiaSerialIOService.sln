@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaiaSerialIOServer", "GaiaSerialIOServer\GaiaSerialIOServer.csproj", "{2B5E3BAA-E6E4-42A7-9A68-57B8A7300742}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaiaSerialIOClient", "GaiaSerialIOClient\GaiaSerialIOClient.csproj", "{BA0DC7D3-D5B8-48CA-9DB9-A444ED1F0983}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B5E3BAA-E6E4-42A7-9A68-57B8A7300742}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B5E3BAA-E6E4-42A7-9A68-57B8A7300742}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B5E3BAA-E6E4-42A7-9A68-57B8A7300742}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B5E3BAA-E6E4-42A7-9A68-57B8A7300742}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA0DC7D3-D5B8-48CA-9DB9-A444ED1F0983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA0DC7D3-D5B8-48CA-9DB9-A444ED1F0983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA0DC7D3-D5B8-48CA-9DB9-A444ED1F0983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA0DC7D3-D5B8-48CA-9DB9-A444ED1F0983}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
