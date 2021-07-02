@@ -24,12 +24,20 @@ namespace Gaia.SerialIO
         /// <param name="device_name"></param>
         /// <param name="port"></param>
         /// <param name="ip"></param>
-        public SerialClient(string device_name, uint port = 6379, string ip = "127.0.0.1")
+        public SerialClient(string device_name, uint port = 6379, string ip = "127.0.0.1") : 
+            this(device_name, ConnectionMultiplexer.Connect($"{ip}:{port.ToString()}"))
+        {}
+
+        /// <summary>
+        /// Try to reuse the connection to a Redis server.
+        /// </summary>
+        /// <param name="device_name"></param>
+        /// <param name="connection"></param>
+        /// <exception cref="Exception"></exception>
+        public SerialClient(string device_name, IConnectionMultiplexer connection)
         {
             DeviceName = device_name;
-            var connection = ConnectionMultiplexer.Connect($"{ip}:{port.ToString()}");
             Communicator = connection.GetSubscriber();
-
             var database = connection.GetDatabase();
             if (!database.SetContains("serial_ports", DeviceName))
             {
