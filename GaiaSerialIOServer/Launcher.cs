@@ -65,9 +65,8 @@ namespace Gaia.SerialIO
         }
         
         private LogClient Logger;
-        private NameClient ServiceNameResolver;
-        private NameToken ServiceNameToken;
-        
+        private NameClient NameResolver;
+
         /// <summary>
         /// Launch routers depends on the device names given in the command line arguments.
         /// </summary>
@@ -79,7 +78,7 @@ namespace Gaia.SerialIO
             var connection = ConnectionMultiplexer.Connect($"{ip}:{port.ToString()}");
             var database = connection.GetDatabase();
             
-            ServiceNameResolver = new NameClient();
+            NameResolver = new NameClient();
             Logger = new LogClient();
             Logger.RecordMilestone("IO Service initiating...");
 
@@ -92,12 +91,12 @@ namespace Gaia.SerialIO
                 database.SetAdd("serial_ports", device_name);
             }
 
-            ServiceNameToken = ServiceNameResolver.HoldName("SerialIOService");
+            NameResolver.RegisterName("SerialIOService");
             
             // Check the life flag of the router in every second. 
             while (routers.Any(router => router.LifeFlag))
             {
-                ServiceNameToken.Update();
+                NameResolver.Update();
                 Thread.Sleep(1000);
             }
             

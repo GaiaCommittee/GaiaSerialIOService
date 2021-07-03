@@ -4,7 +4,6 @@
 
 namespace Gaia::SerialIO
 {
-
     /// Make a new connection to the Redis server.
     SerialClient::SerialClient(const std::string& device_name, unsigned int port, const std::string &ip) :
         SerialClient(device_name,
