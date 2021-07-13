@@ -153,6 +153,7 @@ namespace Gaia.SerialIO
             
             Port = new System.IO.Ports.SerialPort("/dev/" + device_name)
             {
+                Encoding = Encoding.Latin1,
                 Parity = configuration.Parity,
                 BaudRate = configuration.BaudRate,
                 DataBits = configuration.DataBits,
@@ -206,7 +207,7 @@ namespace Gaia.SerialIO
         /// </summary>
         /// <param name="bytes">Transferred data.</param>
         private void HandleInputData(byte[] bytes)
-        {
+        {   
             if (Subscriber.IsConnected())
             {
                 Subscriber.Publish($"serial_ports/{DeviceName}/read", bytes);
