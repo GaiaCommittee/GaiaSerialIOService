@@ -153,7 +153,6 @@ namespace Gaia.SerialIO
             
             Port = new System.IO.Ports.SerialPort("/dev/" + device_name)
             {
-                Encoding = Encoding.ASCII,
                 Parity = configuration.Parity,
                 BaudRate = configuration.BaudRate,
                 DataBits = configuration.DataBits,
@@ -178,7 +177,7 @@ namespace Gaia.SerialIO
             Subscriber = connection.GetSubscriber();
             Subscriber.Subscribe($"serial_ports/{device_name}/write", (channel, value) =>
             {
-                HandleOutputData(value);
+                HandleOutputData(value.ConvertTo<byte[]>());
             });
             Subscriber.Subscribe($"serial_ports/{device_name}/command", (channel, value) =>
             {
@@ -210,7 +209,7 @@ namespace Gaia.SerialIO
         {
             if (Subscriber.IsConnected())
             {
-                Subscriber.Publish($"serial_ports/{DeviceName}/read", Encoding.ASCII.GetString(bytes));
+                Subscriber.Publish($"serial_ports/{DeviceName}/read", bytes);
             }
         }
         
@@ -219,11 +218,11 @@ namespace Gaia.SerialIO
         /// The message will be encoded in ASCII bytes.
         /// </summary>
         /// <param name="message">Message text to send into the serial_ports port.</param>
-        private void HandleOutputData(string message)
+        private void HandleOutputData(byte[] message)
         {
             if (Port.IsOpen)
             {
-                Port.Write(message);
+                Port.Write(message, 0, message.Length);
             }
         }
 
