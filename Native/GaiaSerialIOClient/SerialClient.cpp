@@ -50,7 +50,11 @@ namespace Gaia::SerialIO
     {
         if (Subscriber)
         {
-            Subscriber->consume();
+            try
+            {
+                Subscriber->consume();
+            }catch (sw::redis::TimeoutError& error)
+            {}
         }
     }
 }
